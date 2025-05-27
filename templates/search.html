@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Songs</title>
+</head>
+<body>
+    <h1>Search</h1>
+    <form method="POST">
+        <input type="text" name="query" placeholder="Enter song title or artist" value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+    {% if songs %}
+        <h2>Results:</h2>
+        <ul>
+        {% for song in songs %}
+            <li>{{ song.title }} by {{ song.artist }} ({{ song.album }})</li>
+        {% endfor %}
+        </ul>
+    {% elif query %}
+        <p>No results found for '{{ query }}'.</p>
+    {% endif %}
+    <a href="/">Back to Home</a>
+</body>
+</html>

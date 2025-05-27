@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Playlists</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>User Playlists</h1>
+
+    <!-- Create New Playlist -->
+    <form method="POST" action="/create_playlist">
+        <input type="text" name="playlist_name" placeholder="New Playlist Name" required>
+        <input type="text" name="username" placeholder="Username" required>
+        <button type="submit">Create Playlist</button>
+    </form>
+
+    <hr>
+
+    <!-- List of Playlists -->
+    <h2>Available Playlists</h2>
+    <ul>
+        {% for playlist in playlists %}
+        <li>
+            <strong>{{ playlist.name }}</strong> by {{ playlist.username }}
+            <ul>
+                {% for song in playlist.songs %}
+                <li>{{ song.title }} by {{ song.artist }} ({{ song.album }})</li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <a href="/">Back to Home</a>
+</body>
+</html>

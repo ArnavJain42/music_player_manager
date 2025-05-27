@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Playlist Manager</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>All Songs</h1>
+    <a href="/add">Add Song</a> | <a href="/search">Search</a>
+    <ul>
+        {% for song in songs %}
+        <li>{{ song.title }} by {{ song.artist }} ({{ song.album }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
