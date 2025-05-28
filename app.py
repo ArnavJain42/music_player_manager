@@ -96,7 +96,3 @@ def show_add_song_to_playlist(playlist_id):
         return render_template('add_to_playlist.html', songs=results, playlist_id=playlist_id, query=query)
     return render_template('add_to_playlist.html', songs=[], playlist_id=playlist_id, query='')
 
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
