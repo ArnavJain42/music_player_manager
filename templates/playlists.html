@@ -1,36 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
     <title>User Playlists</title>
     <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/magnet-lines.css">
+    <script defer src="/static/magnet-line.js"></script>
 </head>
+
 <body>
-    <h1>User Playlists</h1>
+    <div style="position: relative; z-index: 1;">
+        <div class="container">
+            <h1 class="animated-title">📂 User Playlists</h1>
 
-    <!-- Create New Playlist -->
-    <form method="POST" action="/create_playlist">
-        <input type="text" name="playlist_name" placeholder="New Playlist Name" required>
-        <input type="text" name="username" placeholder="Username" required>
-        <button type="submit">Create Playlist</button>
-    </form>
+            <form method="POST" action="/create_playlist" class="form-box">
+                <input type="text" name="playlist_name" placeholder="New Playlist Name" required>
+                <input type="text" name="username" placeholder="Username" required>
+                <button type="submit" class="nav-button">Create Playlist</button>
+            </form>
 
-    <hr>
+            <hr style="border: 1px solid rgba(255,255,255,0.2);">
 
-    <!-- List of Playlists -->
-    <h2>Available Playlists</h2>
-    <ul>
-        {% for playlist in playlists %}
-        <li>
-            <strong>{{ playlist.name }}</strong> by {{ playlist.username }}
+            <h2>🎧 Available Playlists</h2>
             <ul>
-                {% for song in playlist.songs %}
-                <li>{{ song.title }} by {{ song.artist }} ({{ song.album }})</li>
+                {% for playlist in playlists %}
+                <li>
+                    <div>
+                        <strong>{{ playlist.name }}</strong> by {{ playlist.username }}
+                        <form action="{{ url_for('show_add_song_to_playlist', playlist_id=playlist.id) }}" method="GET"
+                            style="display:inline;">
+                            <button type="submit" class="nav-button">➕ Add Song</button>
+                        </form>
+                        <div class="playlist-songs">
+                            <ul>
+                                {% for song in playlist.songs %}
+                                <li style="display: flex; align-items: center;justify-content: space-around;">
+                                    <span class="song-title">{{ song.title }}</span>
+                                    <span class="song-artist">by {{ song.artist }}</span>
+                                    <span class="song-album">({{ song.album }})</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </li>
                 {% endfor %}
             </ul>
-        </li>
-        {% endfor %}
-    </ul>
 
-    <a href="/">Back to Home</a>
+
+            <a href="/" class="nav-button">⬅️ Back to Home</a>
+        </div>
+    </div>
 </body>
+
 </html>

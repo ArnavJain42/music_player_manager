@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Song to Playlist</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/magnet-lines.css">
+    <script defer src="/static/magnet-line.js"></script>
+</head>
+
+<body>
+    <div style="position: relative; z-index: 1;">x
+        <div class="container">
+            <h1 class="animated-title">🎶 Add Song to Playlist</h1>
+
+            <form method="POST" class="form-box">
+                <input type="text" name="query" placeholder="Search songs..." required>
+                <button type="submit" class="nav-button">Search</button>
+            </form>
+
+            {% if songs %}
+            <form method="POST" action="/confirm_add_song" class="form-box">
+                <input type="hidden" name="playlist_id" value="{{ playlist_id }}">
+                <div class="song-list">
+                    <ul>
+                        {% for song in songs %}
+                        <li style="display: flex;align-items: center;justify-content: space-around;">
+                            <input type="radio" name="song_id" value="{{ song.id }}" required
+                                style="margin-right:10px;">
+                            <span class="song-title">{{ song.title }}</span>
+                            <span class="song-artist">by {{ song.artist }}</span>
+                            <span class="song-album">({{ song.album }})</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <button type="submit" class="nav-button">Add Selected Song</button>
+            </form>
+            {% endif %}
+
+
+            <a href="/playlists" class="nav-button">⬅️ Back to Playlists</a>
+        </div>
+    </div>
+</body>
+
+</html>

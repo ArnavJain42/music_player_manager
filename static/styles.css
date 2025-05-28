@@ -1,11 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(120deg, #EEE2DC 0%, #EDC7B7 100%);
+    color: #123C69;
+    min-height: 100vh;
 }
-a {
-    margin-right: 10px;
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px 30px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(18,60,105,0.12);
+    text-align: center;
 }
+
+.animated-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.4em;
+    background: linear-gradient(90deg, #123C69, #AC3B61, #123C69);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: moveGradient 4s ease-in-out infinite;
+    margin-bottom: 10px;
+}
+
+@keyframes moveGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.nav-button {
+    margin: 10px 8px;
+    padding: 12px 28px;
+    background: linear-gradient(45deg, #123C69, #AC3B61);
+    border: none;
+    color: #EEE2DC;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.08em;
+    letter-spacing: 0.5px;
+    transition: all 0.3s cubic-bezier(.4,0,.2,1);
+    box-shadow: 0 4px 15px rgba(18,60,105,0.08);
+    cursor: pointer;
+    display: inline-block;
+}
+.nav-button:hover {
+    background: linear-gradient(90deg, #AC3B61, #123C69);
+    color: #EDC7B7;
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 6px 24px rgba(172,59,97,0.13);
+}
+
+hr {
+    border: 1px solid #BAB2B5;
+    margin: 30px 0;
+}
+
+.styled-form, .form-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.styled-form input, .form-box input {
+    width: 90%;
+    max-width: 350px;
+    padding: 13px 16px;
+    border: 2px solid #BAB2B5;
+    border-radius: 8px;
+    font-size: 1.05em;
+    background: #EEE2DC;
+    color: #123C69;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 6px;
+    transition: border 0.2s;
+}
+.styled-form input:focus, .form-box input:focus {
+    border: 2px solid #AC3B61;
+    outline: none;
+}
+
+.form-box button, .styled-form button {
+    margin-top: 8px;
+}
+
 ul {
     list-style: none;
     padding: 0;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 12px;
+    background: linear-gradient(90deg, #EDC7B7 75%, #BAB2B5 100%);
+    border-radius: 10px;
+    padding: 13px 20px;
+    box-shadow: 0 2px 8px rgba(18,60,105,0.04);
+    font-size: 1.06em;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+li:hover {
+    background: linear-gradient(90deg, #EEE2DC 60%, #EDC7B7 100%);
+    box-shadow: 0 4px 18px rgba(172,59,97,0.08);
+}
+
+.song-title {
+    font-weight: bold;
+    color: #123C69;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1em;
+}
+
+.song-artist {
+    color: #AC3B61;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.song-album {
+    color: #123C69;
+    font-style: italic;
+    margin-left: 16px;
+    font-size: 0.97em;
+    opacity: 0.85;
+}
+
+/* Scrollable lists for long content */
+.song-list, .playlist-songs, .search-results {
+    margin-top: 30px;
+    background: #EEE2DC;
+    padding: 28px 18px;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(186,178,181,0.10);
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.song-list h2, .playlist-songs h2, .search-results h2 {
+    text-align: center;
+    color: #AC3B61;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 22px;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 18px 5vw;
+    }
+    .animated-title {
+        font-size: 1.5em;
+    }
+    li {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 8px;
+        font-size: 1em;
+    }
 }

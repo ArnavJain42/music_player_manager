@@ -1,24 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
     <title>Search Songs</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/magnet-lines.css">
+    <script defer src="/static/magnet-line.js"></script>
 </head>
+
 <body>
-    <h1>Search</h1>
-    <form method="POST">
-        <input type="text" name="query" placeholder="Enter song title or artist" value="{{ query }}">
-        <button type="submit">Search</button>
-    </form>
-    {% if songs %}
-        <h2>Results:</h2>
-        <ul>
-        {% for song in songs %}
-            <li>{{ song.title }} by {{ song.artist }} ({{ song.album }})</li>
-        {% endfor %}
-        </ul>
-    {% elif query %}
-        <p>No results found for '{{ query }}'.</p>
-    {% endif %}
-    <a href="/">Back to Home</a>
+    <div style="position: relative; z-index: 1;">
+        <div class="container">
+            <h1 class="animated-title">🔍 Search Songs</h1>
+            <p style="font-size:1.1em; color:#AC3B61; margin-bottom: 20px;">
+                Click on the searched song to play the music video on YouTube.
+            </p>
+            <form method="POST" class="form-box">
+                <input type="text" name="query" placeholder="Enter song title or artist" value="{{ query }}">
+                <button type="submit" class="nav-button">Search</button>
+            </form>
+            {% if songs %}
+            <div class="search-results">
+                <h2>🎼 Results:</h2>
+                <ul>
+                    {% for song in songs %}
+                    <li>
+                        <a href="#" class="youtube-link" data-title="{{ song.title }}" data-artist="{{ song.artist }}"
+                            style="text-decoration: none; color: inherit; display: block; width: 100%;display: flex;align-items: center;justify-content: space-around;"
+                            title="Play on YouTube">
+                            <span class="song-title">{{ song.title }}</span>
+                            <span class="song-artist">by {{ song.artist }}</span>
+                            <span class="song-album">({{ song.album }})</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% elif query %}
+            <p>No results found for '{{ query }}'.</p>
+            {% endif %}
+
+
+            <a href="/" class="nav-button">⬅️ Back to Home</a>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.youtube-link').forEach(function (link) {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const title = this.getAttribute('data-title');
+                    const artist = this.getAttribute('data-artist');
+                    fetch(`/youtube_link?title=${encodeURIComponent(title)}&artist=${encodeURIComponent(artist)}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.url) {
+                                window.open(data.url, '_blank');
+                            } else {
+                                alert('No YouTube video found for this song.');
+                            }
+                        });
+                });
+            });
+        });
+    </script>
 </body>
+
 </html>

@@ -1,0 +1,23 @@
+.magnet-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #EDC7B7;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.magnet-background span {
+  display: block;
+  background-color: tomato;
+  width: 0.8vmin;
+  height: 5vmin;
+  transform-origin: center;
+  will-change: transform;
+  transform: rotate(var(--rotate, 0deg));
+}

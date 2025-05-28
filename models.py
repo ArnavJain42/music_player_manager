@@ -105,3 +105,13 @@ def create_playlist(username, playlist_name):
         cursor.execute("INSERT INTO Playlists (user_id, name) VALUES (%s, %s)", (user_id, playlist_name))
         conn.commit()
     conn.close()
+
+def add_song_to_playlist(playlist_id, song_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("""
+        INSERT IGNORE INTO PlaylistSongs (playlist_id, song_id)
+        VALUES (%s, %s)
+    """, (playlist_id, song_id))
+    conn.commit()
+    conn.close()

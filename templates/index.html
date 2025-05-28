@@ -1,16 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Music Playlist Manager</title>
+    <meta charset="UTF-8">
+    <title>🎵 Arnav's Music Playlist Manager 🎶</title>
     <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/magnet-lines.css">
+    <script defer src="/static/magnet-line.js"></script>
+
 </head>
+
 <body>
-    <h1>All Songs</h1>
-    <a href="/add">Add Song</a> | <a href="/search">Search</a>
-    <ul>
-        {% for song in songs %}
-        <li>{{ song.title }} by {{ song.artist }} ({{ song.album }})</li>
-        {% endfor %}
-    </ul>
+    <div style="position: relative; z-index: 1;">
+        <div class="container">
+            <h1 class="animated-title">🎧 Welcome to Music Playlist Manager <br> - By Arnav 🎶</h1>
+            <p class="tagline">"Tune your mood, one song at a time!"</p>
+
+            <nav class="navbar">
+                <a href="/add" class="nav-button">➕ Add Song</a>
+                <a href="/search" class="nav-button">🔍 Search</a>
+                <a href="/playlists" class="nav-button">📂 View Playlists</a>
+            </nav>
+
+            <section class="song-list">
+                <h2>🎼 All Available Songs</h2>
+                <ul>
+                    {% for song in songs %}
+                    <li>
+                        <span class="song-title">{{ song.title }}</span>
+                        <span class="song-artist">by {{ song.artist }}</span>
+                        <span class="song-album">({{ song.album }})</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </section>
+
+        </div>
+    </div>
 </body>
+
 </html>
