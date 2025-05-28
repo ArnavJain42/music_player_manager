@@ -13,7 +13,7 @@ load_dotenv()
 app = Flask(__name__)
 create_tables()
 
-YOUTUBE_API_KEY = "AIzaSyDVcm363GYaqRKXTHxjq8wHM2ko61UDxxM"
+YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
 
 def get_youtube_video_url(query):
     search_url = "https://www.googleapis.com/youtube/v3/search"
@@ -97,3 +97,6 @@ def show_add_song_to_playlist(playlist_id):
     return render_template('add_to_playlist.html', songs=[], playlist_id=playlist_id, query='')
 
 
+
+if __name__ == '__main__':
+    app.run(debug=True)
