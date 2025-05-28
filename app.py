@@ -97,6 +97,3 @@ def show_add_song_to_playlist(playlist_id):
     return render_template('add_to_playlist.html', songs=[], playlist_id=playlist_id, query='')
 
 
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5500)
