@@ -5,12 +5,15 @@ from models import (
 )
 from models import add_song_to_playlist
 import requests
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 
 app = Flask(__name__)
 create_tables()
 
-YOUTUBE_API_KEY = "AIzaSyDVcm363GYaqRKXTHxjq8wHM2ko61UDxxM"
+YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY")
 
 def get_youtube_video_url(query):
     search_url = "https://www.googleapis.com/youtube/v3/search"
